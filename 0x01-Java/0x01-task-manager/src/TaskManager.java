@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
-public class TaskManager<I> {
+public class TaskManager {
 
-    public List<I> items;
+    public List<Task> tasksList;
+
+    public int size = 0;
 
     public TaskManager() {
-        this.items = new ArrayList<>();
+        this.tasksList = new ArrayList<>();
     }
 
     // ------------------ Access methods ------------------
@@ -15,12 +16,28 @@ public class TaskManager<I> {
      * This method shows the list of tasks.
      * shows the list of tasks.
      */
-    public void showTask() {
-        int taskSize = this.items.size();
-        int itemsStart = 0;
-        int itemsEnd = taskSize;
-        for (int i = itemsStart; i < itemsEnd; i++) {
-            System.out.println(this.items.get(i));
+    public void showTasks() {
+        System.out.println("There are '" + size + "' tasks in this manager: \n");
+
+        int itemsStart = 0, itemsEnd = size - 1;
+
+        for (int i = itemsStart; i <= itemsEnd; i++) {
+            System.out.println(this.tasksList.get(i));
+        }
+    }
+
+    /**
+     * This method shows the list of tasks.
+     * shows the list of tasks.
+     */
+    public void showTasks(List<Task> tasks) {
+        int size = tasks.size();
+        System.out.println("There are '" + size + "' tasks in this manager: \n");
+
+        int itemsStart = 0, itemsEnd = size - 1;
+
+        for (int i = itemsStart; i <= itemsEnd; i++) {
+            System.out.println(tasks.get(i));
         }
     }
 
@@ -29,22 +46,20 @@ public class TaskManager<I> {
      * shows the list of tasks.
      * @return a task
      */
-    public I findByItemId(Long id) {
-        Long itemId = id;
-        I task = null;
+    public Task findByTaskId(Long id) {
 
-        int taskSize = this.items.size();
-        int itemsStart = 0;
-        int itemsEnd = taskSize;
+        Task task = null;
 
-        for (int i = itemsStart; i < itemsEnd; i++) {
+        int itemsStart = 0, itemsEnd = size - 1;
 
-            if (id == items.get(i)) {
-                task = items.get(i);
+        for (int i = itemsStart; i <= itemsEnd; i++) {
+            Long tId = tasksList.get(i).getId();
+            if (id == tId) {
+                task = tasksList.get(i);
             }
         }
 
-        if (task == null) {
+        if (task != null) {
             return task;
         }
         else {
@@ -57,40 +72,28 @@ public class TaskManager<I> {
      * shows the list of tasks.
      * @return lists of filtered tasks
      */
-    public List<I> filterTasksByPriorityUsingCollections(TaskPriority taskPriority) {
+    public List<Task> filterTasksByPriorityUsing(TaskPriority taskPriority) {
 
-        List<I> list;
+        List<Task> resultList = new ArrayList<>();
 
-        int taskSize = this.items.size();
-        int itemsStart = 0;
-        int itemsEnd = taskSize;
+        int itemsStart = 0, itemsEnd = size - 1;
 
-        for (int i = itemsStart; i < itemsEnd; i++) {
+        for (int i = itemsStart; i <= itemsEnd; i++) {
+            TaskPriority theTaskPriority = tasksList.get(i).getTaskPriority();
 
-            I task = items.get(i);
-
-            if (taskPriority == items.get(i)) {
-                task = items.get(i);
+            if (taskPriority == theTaskPriority) {
+                resultList.add(tasksList.get(i));
             }
         }
-        return null;
-    }
-
-    /**
-     * This method filters the tasks by "priority" using streams.
-     * shows the list of tasks.
-     * @return lists of filtered tasks
-     */
-    public List<I> filterTasksByPriorityUsingStream(TaskPriority taskPriority) {
-
-        return null;
+        return resultList;
     }
 
     // ------------------ Update methods ------------------
     /**
      * This method add a task to the list of tasks.
      */
-    public void addTask(I item) {
-        items.add(item);
+    public void addTask(Task task) {
+        tasksList.add(task);
+        size++;
     }
 }
