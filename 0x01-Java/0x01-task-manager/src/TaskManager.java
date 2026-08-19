@@ -28,6 +28,13 @@ public class TaskManager {
 
     // ------------------ Access methods ------------------
     /**
+     * This method returns the number of tasks.
+     * @return integer number of tasks
+     */
+    public int size() {
+        return size;
+    }
+    /**
      * This method shows the list of tasks.
      * shows the list of tasks.
      */
