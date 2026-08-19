@@ -8,7 +8,7 @@ public class Main {
         TaskManager taskTaskManager;
         taskTaskManager = startUpTaskManager();
 
-        // -----------  Display tasks -----------
+        // ----------- Display tasks -----------
         // taskTaskManager.showTasks();
 
         // ----------- Find a task by your choice "id" -----------
@@ -20,6 +20,7 @@ public class Main {
         List<Task> tasksList = new ArrayList<>();
         tasksList = taskTaskManager
                 .filterTasksByPriorityUsing(TaskPriority.COMPLETED);
+        // Display the filtered list of tasks
         taskTaskManager.showTasks(tasksList);
 
     }

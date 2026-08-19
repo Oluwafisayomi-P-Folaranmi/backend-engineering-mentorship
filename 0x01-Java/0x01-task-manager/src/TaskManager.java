@@ -3,12 +3,27 @@ import java.util.List;
 
 public class TaskManager {
 
-    public List<Task> tasksList;
+    // ------------------ Member variables ------------------
+    // The underlying data structure for managing tasks
+    private final List<Task> tasksList;
 
-    public int size = 0;
+    private int size = 0;
 
     public TaskManager() {
         this.tasksList = new ArrayList<>();
+    }
+
+    // ------------------ Getters and Setters
+    private List<Task> getTasksList() {
+        return tasksList;
+    }
+
+    private int getSize() {
+        return size;
+    }
+
+    private void setSize(int size) {
+        this.size = size;
     }
 
     // ------------------ Access methods ------------------
