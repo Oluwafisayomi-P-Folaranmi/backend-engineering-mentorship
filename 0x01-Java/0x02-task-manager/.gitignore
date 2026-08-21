@@ -1,6 +1,8 @@
 ### IntelliJ IDEA ###
-.idea/
 out/
+.gitignore
+.idea
+0x02-task-manager.iml
 !**/src/main/**/out/
 !**/src/test/**/out/
 .kotlin
