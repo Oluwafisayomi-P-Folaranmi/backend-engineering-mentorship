@@ -22,7 +22,6 @@ public class Main {
                 .filterTasksByPriorityUsing(TaskPriority.COMPLETED);
         // Display the filtered list of tasks
         taskTaskManager.showTasks(tasksList);
-
     }
 
     /**
