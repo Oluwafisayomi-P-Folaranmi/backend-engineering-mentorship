@@ -1,5 +1,7 @@
 package TaskManager.Model;
 
+import java.time.LocalDateTime;
+
 public class Task {
 
     private Long id;
@@ -11,6 +13,8 @@ public class Task {
     private TaskStatus status;
 
     private TaskPriority priority;
+
+    private final LocalDateTime dateTime = LocalDateTime.now();;
 
     public Task(Long id, String title, boolean completed, TaskStatus status, TaskPriority priority) {
         this.id = id;
@@ -66,6 +70,9 @@ public class Task {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", completed=" + completed +
+                ", status=" + status +
+                ", priority=" + priority +
+                ", dateTime=" + dateTime +
                 '}';
     }
 }
