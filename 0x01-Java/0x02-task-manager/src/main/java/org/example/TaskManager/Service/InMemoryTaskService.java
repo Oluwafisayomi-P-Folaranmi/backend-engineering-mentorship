@@ -1,19 +1,20 @@
-package TaskManager.Service;
+package org.example.TaskManager.Service;
 
-import TaskManager.Exception.IllegalTaskException;
-import TaskManager.Exception.TaskNotFoundException;
-import TaskManager.Model.Task;
-import TaskManager.Model.TaskPriority;
-import TaskManager.Model.TaskStatus;
-import TaskManager.Repository.InMemoryTaskRepository;
+import org.example.TaskManager.Exception.IllegalTaskException;
+import org.example.TaskManager.Exception.TaskNotFoundException;
+import org.example.TaskManager.Model.Task;
+import org.example.TaskManager.Model.TaskPriority;
+import org.example.TaskManager.Model.TaskStatus;
+import org.example.TaskManager.Repository.InMemoryTaskRepository;
 
 import java.util.List;
 
 public class InMemoryTaskService implements TaskService {
 
-    private final InMemoryTaskRepository inMemoryTaskRepository = new InMemoryTaskRepository();
+    private final InMemoryTaskRepository inMemoryTaskRepository;
 
-    public InMemoryTaskService() {
+    public InMemoryTaskService(InMemoryTaskRepository inMemoryTaskRepository) {
+        this.inMemoryTaskRepository = inMemoryTaskRepository;
     }
 
     @Override
@@ -47,11 +48,9 @@ public class InMemoryTaskService implements TaskService {
     }
 
     @Override
-    public Task updateByStatus(Task task) {
-        return inMemoryTaskRepository.updateByStatus(task)
-                .orElseThrow(() -> new TaskNotFoundException(
-                        "This task does not exist."
-                ));
+    public Task updateByStatus(Task task, TaskStatus status) {
+        return inMemoryTaskRepository.updateByStatus(task, status)
+                .orElseThrow(() -> new TaskNotFoundException("This task does not exist."));
     }
 
     @Override
@@ -70,5 +69,11 @@ public class InMemoryTaskService implements TaskService {
     public Boolean existById(Long id) {
         return inMemoryTaskRepository.existById(id)
                 .orElseThrow(() -> new IllegalTaskException("This task already exists."));
+    }
+
+    @Override
+    public Task delete(Task task) {
+        return inMemoryTaskRepository.delete(task)
+                .orElseThrow(() -> new TaskNotFoundException("This task does not exist."));
     }
 }

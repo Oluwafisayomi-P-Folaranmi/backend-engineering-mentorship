@@ -1,4 +1,4 @@
-package TaskManager.Exception;
+package org.example.TaskManager.Exception;
 
 public class TaskNotFoundException extends RuntimeException {
 

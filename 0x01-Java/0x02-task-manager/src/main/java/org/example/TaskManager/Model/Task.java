@@ -1,4 +1,4 @@
-package TaskManager.Model;
+package org.example.TaskManager.Model;
 
 import java.time.LocalDateTime;
 

@@ -1,8 +1,8 @@
-package TaskManager.Repository;
+package org.example.TaskManager.Repository;
 
-import TaskManager.Model.Task;
-import TaskManager.Model.TaskPriority;
-import TaskManager.Model.TaskStatus;
+import org.example.TaskManager.Model.Task;
+import org.example.TaskManager.Model.TaskPriority;
+import org.example.TaskManager.Model.TaskStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,11 +15,13 @@ public interface TaskRepository {
 
     Optional<List<Task>> findAll();
 
-    Optional<Task> updateByStatus(Task task);
+    Optional<Task> updateByStatus(Task task, TaskStatus status);
 
     Optional<List<Task>> filterByStatus(TaskStatus status);
 
     Optional<List<Task>> filterByPriority(TaskPriority priority);
 
     Optional<Boolean> existById(Long id);
+
+    Optional<Task> delete(Task task);
 }

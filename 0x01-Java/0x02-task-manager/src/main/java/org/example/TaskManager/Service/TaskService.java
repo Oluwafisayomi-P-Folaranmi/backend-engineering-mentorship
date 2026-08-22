@@ -1,11 +1,10 @@
-package TaskManager.Service;
+package org.example.TaskManager.Service;
 
-import TaskManager.Model.Task;
-import TaskManager.Model.TaskPriority;
-import TaskManager.Model.TaskStatus;
+import org.example.TaskManager.Model.Task;
+import org.example.TaskManager.Model.TaskPriority;
+import org.example.TaskManager.Model.TaskStatus;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TaskService {
 
@@ -15,11 +14,13 @@ public interface TaskService {
 
     List<Task> findAll();
 
-    Task updateByStatus(Task task);
+    Task updateByStatus(Task task, TaskStatus status);
 
     List<Task> filterByStatus(TaskStatus status);
 
     List<Task> filterByPriority(TaskPriority priority);
 
     Boolean existById(Long id);
+
+    Task delete(Task task);
 }

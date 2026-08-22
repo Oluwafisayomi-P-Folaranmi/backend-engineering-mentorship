@@ -1,8 +1,8 @@
-package TaskManager.Repository;
+package org.example.TaskManager.Repository;
 
-import TaskManager.Model.Task;
-import TaskManager.Model.TaskPriority;
-import TaskManager.Model.TaskStatus;
+import org.example.TaskManager.Model.Task;
+import org.example.TaskManager.Model.TaskPriority;
+import org.example.TaskManager.Model.TaskStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +37,11 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Optional<Task> updateByStatus(Task task) {
+    public Optional<Task> updateByStatus(Task task, TaskStatus status) {
         Long taskId = task.getId();
         for (Task theTask : tasks) {
             if (theTask.getId() == taskId) {
-                theTask.markCompleted(true);
+                theTask.setStatus(status);
                 return Optional.of(theTask);
             }
         }
@@ -81,6 +81,19 @@ public class InMemoryTaskRepository implements TaskRepository {
         for (Task theTask : tasks) {
             if (theTask.getId().equals(id)) {
                 return Optional.of(Boolean.TRUE);
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Task> delete(Task task) {
+        Task deletedTask;
+        for (Task theTask : tasks) {
+            if (theTask.getId().equals(task.getId())) {
+                deletedTask = theTask;
+                tasks.remove(theTask);
+                return Optional.of(theTask);
             }
         }
         return Optional.empty();
