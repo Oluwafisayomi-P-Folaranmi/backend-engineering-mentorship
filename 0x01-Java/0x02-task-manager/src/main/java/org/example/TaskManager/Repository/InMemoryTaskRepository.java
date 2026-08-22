@@ -36,6 +36,7 @@ public class InMemoryTaskRepository implements TaskRepository {
         return Optional.empty();
     }
 
+    //
     @Override
     public Optional<Task> updateByStatus(Task task, TaskStatus status) {
         Long taskId = task.getId();
@@ -98,4 +99,7 @@ public class InMemoryTaskRepository implements TaskRepository {
         }
         return Optional.empty();
     }
+
+    // Self-delete
+
 }
